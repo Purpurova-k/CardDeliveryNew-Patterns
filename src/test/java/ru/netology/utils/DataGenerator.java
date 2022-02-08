@@ -1,7 +1,7 @@
-package utils;
+package ru.netology.utils;
 
 import com.github.javafaker.Faker;
-import entities.DataInfo;
+import ru.netology.entities.DataInfo;
 import lombok.experimental.UtilityClass;
 
 import java.time.LocalDate;
@@ -16,8 +16,7 @@ public class DataGenerator {
         public static DataInfo generateInfo(String locale) {
             Faker faker = new Faker(new Locale(locale));
             return new DataInfo(generateCity(),
-                    faker.name().lastName().replace('ё', 'е') + " "
-                            + faker.name().firstName().replace('ё', 'е'),
+                    faker.name().lastName().replace('ё', 'е') + " " + faker.name().firstName().replace('ё', 'е'),
                     faker.numerify("+79#########"));
         }
 
