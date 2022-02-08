@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 import entities.DataInfo;
 import lombok.experimental.UtilityClass;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @UtilityClass
@@ -15,10 +17,9 @@ public class DataGenerator {
             Faker faker = new Faker(new Locale(locale));
             return new DataInfo(generateCity(),
                     faker.name().lastName().replace('ё', 'е') + " "
-                    + faker.name().firstName().replace('ё', 'е'),
+                            + faker.name().firstName().replace('ё', 'е'),
                     faker.numerify("+79#########"));
         }
-
 
 
         public static String generateCity() {
@@ -33,6 +34,12 @@ public class DataGenerator {
                     "Смоленск", "Владикавказ", "Ставрополь", "Тамбов", "Казань", "Тверь", "Томск", "Тула", "Кызыл", "Тюмень", "Ижевск",
                     "Ульяновск", "Хабаровск", "Абакан", "Ханты-Мансийск", "Челябинск", "Грозный", "Чебоксары", "Анадырь", "Салехард", "Ярославль"));
             return cities.get(random.nextInt(cities.size()));
+        }
+
+        public static String generateDate() {
+            return LocalDate.now()
+                    .plusDays(new Faker().random().nextInt(3, 31))
+                    .format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         }
     }
 
